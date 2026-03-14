@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hamdi Abderrahmene — AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0a0e13;
+  --surface: #16202c;
+  --surface2: #1c2a38;
+  --border: rgba(0,212,255,0.12);
+  --border2: rgba(0,212,255,0.22);
+  --accent: #00d4ff;
+  --accent3: #10b981;
+  --text: #e2e8f0;
+  --muted: #8892a4;
+  --dim: #4a5568;
+  --tag-bg: rgba(0,212,255,0.08);
+  --tag-border: rgba(0,212,255,0.2);
+  --r: 10px;
+  --rsm: 6px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7; overflow-x: hidden; }
+body::before { content: ''; position: fixed; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px); pointer-events: none; z-index: 0; }
+.glow1 { position: fixed; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+.glow2 { position: fixed; bottom: -20%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(124,58,237,0.04) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,14,19,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-in { max-width: 900px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 52px; }
+.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; color: var(--accent); text-decoration: none; }
+.logo span { color: var(--text); }
+.nav-links { display: flex; gap: 24px; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 0.05em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+.hero { min-height: 100vh; display: flex; align-items: center; padding-top: 52px; }
+.hero-in { padding: 80px 0 60px; width: 100%; }
+.lbl { font-size: 11px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.lbl::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--accent); }
+h1.name { font-family: 'Syne', sans-serif; font-size: clamp(40px, 8vw, 76px); font-weight: 800; line-height: 1.0; letter-spacing: -2px; margin-bottom: 8px; }
+h1.name .last { color: var(--accent); }
+.tline { font-size: 15px; color: var(--muted); margin-bottom: 28px; font-weight: 300; }
+.blink { color: var(--accent); animation: blink 1.2s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.bio { max-width: 560px; font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 36px; font-family: 'Syne', sans-serif; }
+.bio strong { color: var(--text); font-weight: 600; }
+.pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 44px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border: 1px solid var(--border2); border-radius: 40px; font-size: 12px; color: var(--muted); text-decoration: none; background: var(--surface); transition: all 0.2s; }
+.pill:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.06); }
+.pill svg { width: 14px; height: 14px; flex-shrink: 0; }
+.stats { display: flex; gap: 40px; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 32px; }
+.sn { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--accent); display: block; line-height: 1.1; }
+.sl { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.12em; }
+section { padding: 80px 0; }
+.slbl { font-size: 11px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.slbl::before { content: ''; display: inline-block; width: 18px; height: 1px; background: var(--accent); }
+.stitle { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 40px; }
+.exp-list { display: flex; flex-direction: column; gap: 1px; }
+.exp-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 24px 28px; transition: border-color 0.2s, background 0.2s; position: relative; overflow: hidden; }
+.exp-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); opacity: 0; transition: opacity 0.2s; }
+.exp-item:hover { border-color: var(--border2); background: var(--surface2); }
+.exp-item:hover::before { opacity: 1; }
+.exp-head { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+.exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; }
+.exp-date { font-size: 11px; color: var(--dim); font-style: italic; white-space: nowrap; }
+.exp-org { font-size: 13px; color: var(--accent); margin-bottom: 14px; }
+.exp-org .loc { color: var(--dim); font-size: 12px; }
+.exp-bul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.exp-bul li { font-size: 13px; color: var(--muted); padding-left: 16px; position: relative; line-height: 1.65; }
+.exp-bul li::before { content: '›'; position: absolute; left: 0; color: var(--accent); }
+.pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.pcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 22px; transition: all 0.2s; position: relative; overflow: hidden; }
+.pcard::after { content: ''; position: absolute; inset: 0; border-radius: var(--r); background: radial-gradient(circle at 60% 20%, rgba(0,212,255,0.05), transparent 60%); opacity: 0; transition: opacity 0.3s; }
+.pcard:hover { border-color: var(--border2); background: var(--surface2); transform: translateY(-2px); }
+.pcard:hover::after { opacity: 1; }
+.picon { width: 36px; height: 36px; background: var(--tag-bg); border: 1px solid var(--tag-border); border-radius: var(--rsm); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 16px; }
+.pname { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.pdesc { font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+.pyear { font-size: 11px; color: var(--dim); }
+.pyear a { color: var(--accent); text-decoration: none; }
+.sgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.sgrp { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 20px; }
+.sgt { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.sgt::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 11px; padding: 4px 10px; background: var(--tag-bg); border: 1px solid var(--tag-border); border-radius: 20px; color: var(--accent); }
+.tag.g { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.2); color: var(--accent3); }
+.tag.p { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.2); color: #a78bfa; }
+.elist { display: flex; flex-direction: column; gap: 16px; }
+.eitem { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 22px 26px; display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; transition: border-color 0.2s; }
+.eitem:hover { border-color: var(--border2); }
+.edeg { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.eschool { font-size: 13px; color: var(--accent); margin-bottom: 6px; }
+.edesc { font-size: 12px; color: var(--muted); line-height: 1.65; }
+.edate { font-size: 11px; color: var(--dim); text-align: right; font-style: italic; white-space: nowrap; padding-top: 3px; }
+.pubcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 22px 26px; border-left: 3px solid var(--accent); transition: background 0.2s; }
+.pubcard:hover { background: var(--surface2); }
+.pubt { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+.pubm { font-size: 12px; color: var(--muted); }
+.lrow { display: flex; flex-wrap: wrap; gap: 12px; }
+.lcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 14px 18px; min-width: 140px; transition: border-color 0.2s; }
+.lcard:hover { border-color: var(--border2); }
+.lname { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.llevel { font-size: 11px; color: var(--muted); }
+.dots { display: flex; gap: 4px; margin-top: 8px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dim); }
+.dot.on { background: var(--accent); }
+.div { border: none; border-top: 1px solid var(--border); margin: 0; }
+footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; }
+footer p { font-size: 12px; color: var(--dim); }
+footer a { color: var(--accent); text-decoration: none; }
+.fi { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fi.vis { opacity: 1; transform: translateY(0); }
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .stats { gap: 24px; }
+  .eitem { grid-template-columns: 1fr; }
+  .edate { text-align: left; }
+}
+</style>
+</head>
+<body>
+<div class="glow1"></div>
+<div class="glow2"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="logo" href="#"><span>hamdi</span>.dev</a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#education">education</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero" id="about">
+  <div class="wrap">
+    <div class="hero-in">
+      <p class="lbl">AI Engineer &amp; Researcher</p>
+      <h1 class="name"><span>Hamdi</span><br/><span class="last">Abderrahmene</span></h1>
+      <p class="tline"><span id="typed"></span><span class="blink">_</span></p>
+      <p class="bio">Passionate about <strong>large language models</strong>, GPU-accelerated compute, and vision-language systems. Currently a <strong>MEXT Research Scholar</strong> at Nagoya University, Japan. I train models, write CUDA kernels, and build things that push the frontier.</p>
+      <div class="pills">
+        <a class="pill" href="mailto:ka_hamdi@esi.dz">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          ka_hamdi@esi.dz
+        </a>
+        <a class="pill" href="https://github.com/a-hamdi" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          a-hamdi
+        </a>
+        <a class="pill" href="https://linkedin.com/in/abderrahmenehamdi" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a class="pill" href="https://medium.com/@ka_hamdi" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          Medium
+        </a>
+        <a class="pill" href="tel:+817089484009">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 12.04 19.79 19.79 0 01.67 3.5 2 2 0 012.65 1.5h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.1a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.03z"/></svg>
+          +81 70 8948 4009
+        </a>
+        <span class="pill" style="cursor:default;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Nagoya, JP
+        </span>
+      </div>
+      <div class="stats">
+        <div><span class="sn">2.1B</span><span class="sl">param LLM trained</span></div>
+        <div><span class="sn">100+</span><span class="sl">days GPU kernels</span></div>
+        <div><span class="sn">4</span><span class="sl">languages</span></div>
+        <div><span class="sn">N1</span><span class="sl">Japanese JLPT</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<section id="experience">
+  <div class="wrap">
+    <p class="slbl fi">career</p>
+    <h2 class="stitle fi">Experience</h2>
+    <div class="exp-list">
+
+      <div class="exp-item fi">
+        <div class="exp-head"><span class="exp-role">VLM Engineering Intern</span><span class="exp-date">Jan 2025 – Jul 2025</span></div>
+        <div class="exp-org">Sorbonne Université <span class="loc">· Paris, France</span></div>
+        <ul class="exp-bul">
+          <li>Exhaustive literature review on modern vision-language models, designing experiments bridging compression, medical imaging, and retrieval-augmented generation.</li>
+          <li>Integrated CLIP and SAM into a perceptually-driven evaluation framework for no-reference image quality assessment.</li>
+          <li>Developed prompt-learning and prompt-tuning strategies to align multimodal outputs with human annotations.</li>
+          <li>Developed training scripts targeting AMD MI300X (ROCm/HIP) and Nvidia GPU workflows via Slurm for hybrid benchmarking.</li>
+          <li>Built evaluation suites for medical image classification, captioning, and VQA; produced the internship thesis for graduation.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item fi">
+        <div class="exp-head"><span class="exp-role">AI / LLM Intern</span><span class="exp-date">Dec 2023 – Feb 2025</span></div>
+        <div class="exp-org">HeReFaNMi — NGI-Search <span class="loc">· Remote, France</span></div>
+        <ul class="exp-bul">
+          <li>Led development of an end-to-end LLM pipeline for the NGI-Search Health-Related Fake News Mitigation project: data collection, annotation strategy, and RAG workflows.</li>
+          <li>Fine-tuned and customized LLMs for classifying and explaining medical news as trustworthy or fake.</li>
+          <li>Packaged models and services with Docker; created CI/CD pipelines for model deployment and A/B testing.</li>
+          <li>Mentored contributors and produced documentation and demos for stakeholder presentations.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item fi">
+        <div class="exp-head"><span class="exp-role">AI Team Leader</span><span class="exp-date">Apr 2023 – Sep 2023</span></div>
+        <div class="exp-org">GDG Algiers <span class="loc">· Algiers, DZ</span></div>
+        <ul class="exp-bul">
+          <li>Led the AI team for Google Developer Group Algiers, coordinating technical workshops, hackathons, and community events.</li>
+          <li>Created AI challenges for GDG DevFest events; delivered a talk at Google I/O Extended Algiers on the latest advancements in AI.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item fi">
+        <div class="exp-head"><span class="exp-role">Android Developer</span><span class="exp-date">Sep 2021 – Feb 2023</span></div>
+        <div class="exp-org">Freelance <span class="loc">· Remote</span></div>
+        <ul class="exp-bul">
+          <li>Designed and developed Android applications over 1.5 years of freelance practice, delivering client projects end-to-end.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<section id="projects">
+  <div class="wrap">
+    <p class="slbl fi">builds</p>
+    <h2 class="stitle fi">Projects</h2>
+    <div class="pgrid">
+
+      <div class="pcard fi">
+        <div class="picon">&#x26A1;</div>
+        <p class="pname">2.1B Parameter LLM</p>
+        <p class="pdesc">Full training from scratch of a 2.1 billion parameter language model using 8x AMD MI300X GPUs.</p>
+        <p class="pyear">2025</p>
+      </div>
+
+      <div class="pcard fi">
+        <div class="picon">&#x1F527;</div>
+        <p class="pname">100 Days GPU Kernels</p>
+        <p class="pdesc">100 consecutive days of coding GPU kernels as part of a global community challenge. Detailed public log on GitHub.</p>
+        <p class="pyear">2025 &middot; <a href="https://github.com/a-hamdi" target="_blank">GitHub</a></p>
+      </div>
+
+      <div class="pcard fi">
+        <div class="picon">&#x1F916;</div>
+        <p class="pname">GPT-2 Re-implementation</p>
+        <p class="pdesc">Full re-implementation of the Transformer architecture (GPT-2) in PyTorch from scratch.</p>
+        <p class="pyear">2023</p>
+      </div>
+
+      <div class="pcard fi">
+        <div class="picon">&#x1F999;</div>
+        <p class="pname">LLaMA-2 Re-implementation</p>
+        <p class="pdesc">Re-implementation of the LLaMA-2 architecture in PyTorch, studying grouped-query attention and RoPE.</p>
+        <p class="pyear">2023</p>
+      </div>
+
+      <div class="pcard fi">
+        <div class="picon">&#x1F40D;</div>
+        <p class="pname">Python-CUDA Transformer</p>
+        <p class="pdesc">CUDA-accelerated Transformer mathematical operations implemented primarily in Python with custom kernels.</p>
+        <p class="pyear">2023</p>
+      </div>
+
+      <div class="pcard fi">
+        <div class="picon">&#x1F300;</div>
+        <p class="pname">ChaosVAE</p>
+        <p class="pdesc">A VAE-based model that learns and generates chaotic dynamical systems through latent-space regularization.</p>
+        <p class="pyear">2023</p>
+      </div>
+
+      <div class="pcard fi">
+        <div class="picon">&#x1F9ED;</div>
+        <p class="pname">Fennetic</p>
+        <p class="pdesc">An AI-powered platform for guiding visitors across Algeria — natural-language tourism assistant.</p>
+        <p class="pyear">2023</p>
+      </div>
+
+      <div class="pcard fi">
+        <div class="picon">&#x1F3E5;</div>
+        <p class="pname">Illness Detection</p>
+        <p class="pdesc">Classification of illnesses from symptom sets using ML algorithms to estimate likelihoods.</p>
+        <p class="pyear">2023</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="slbl fi">expertise</p>
+    <h2 class="stitle fi">Skills</h2>
+    <div class="sgrid">
+
+      <div class="sgrp fi">
+        <p class="sgt">Languages</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">Java</span><span class="tag">R</span></div>
+      </div>
+
+      <div class="sgrp fi">
+        <p class="sgt">GPU / Parallel</p>
+        <div class="tags"><span class="tag">CUDA</span><span class="tag">Triton</span><span class="tag">HIP / ROCm</span><span class="tag">OpenCL</span><span class="tag">MPI</span></div>
+      </div>
+
+      <div class="sgrp fi">
+        <p class="sgt">ML Frameworks</p>
+        <div class="tags"><span class="tag g">PyTorch</span><span class="tag g">TensorFlow</span><span class="tag g">PyTorch Lightning</span><span class="tag g">scikit-learn</span><span class="tag g">LangChain</span></div>
+      </div>
+
+      <div class="sgrp fi">
+        <p class="sgt">MLOps / Infra</p>
+        <div class="tags"><span class="tag p">Docker</span><span class="tag p">Kubernetes</span><span class="tag p">MLflow</span><span class="tag p">AWS SageMaker</span><span class="tag p">Slurm</span></div>
+      </div>
+
+      <div class="sgrp fi">
+        <p class="sgt">Data</p>
+        <div class="tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Apache Spark</span><span class="tag">SQL</span><span class="tag">Matplotlib</span></div>
+      </div>
+
+      <div class="sgrp fi">
+        <p class="sgt">Research Areas</p>
+        <div class="tags"><span class="tag">LLMs</span><span class="tag">VLMs</span><span class="tag">NLP</span><span class="tag">RAG</span><span class="tag">Computer Vision</span><span class="tag">GANs / VAEs</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<section id="education">
+  <div class="wrap">
+    <p class="slbl fi">background</p>
+    <h2 class="stitle fi">Education</h2>
+    <div class="elist">
+
+      <div class="eitem fi">
+        <div>
+          <p class="edeg">MEXT Research Student</p>
+          <p class="eschool">Nagoya University — Ryohei Sasano Lab &middot; Nagoya, JP</p>
+          <p class="edesc">Six-month research student program funded by the Japanese Government (MEXT) Scholarship. Focused on NLP and Computational Linguistics.</p>
+        </div>
+        <p class="edate">Sep 2025 &ndash; Mar 2026</p>
+      </div>
+
+      <div class="eitem fi">
+        <div>
+          <p class="edeg">Engineer's Degree, Computer Science</p>
+          <p class="eschool">Ecole Nationale Superieure d'Informatique (ESI) &middot; Algiers, DZ</p>
+          <p class="edesc">Final year: applied research on Vision-Language Models for no-reference image quality assessment, joint supervision with Sorbonne University.</p>
+        </div>
+        <p class="edate">Jul 2022 &ndash; Jul 2025</p>
+      </div>
+
+      <div class="eitem fi">
+        <div>
+          <p class="edeg">Bachelor's Degree, Computer Science</p>
+          <p class="eschool">Higher School of Computer Science (ESI-SBA) &middot; Sidi Bel Abbes, DZ</p>
+          <p class="edesc">Intensive preparatory cycle covering algorithms, discrete mathematics, systems, and programming. Culminated in competitive admission to ESI.</p>
+        </div>
+        <p class="edate">Jan 2020 &ndash; Jul 2022</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<section>
+  <div class="wrap">
+    <p class="slbl fi">research</p>
+    <h2 class="stitle fi">Publication</h2>
+    <div class="pubcard fi">
+      <p class="pubt">Health Misinformation Detection: A Chunking Strategy Integrated to Retrieval-Augmented Generation</p>
+      <p class="pubm">2nd Workshop on AI for Perception and Artificial Consciousness &middot; Bolzano, Italy &middot; November 2024</p>
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<section>
+  <div class="wrap">
+    <p class="slbl fi">communication</p>
+    <h2 class="stitle fi">Languages</h2>
+    <div class="lrow">
+      <div class="lcard fi">
+        <p class="lname">Arabic</p><p class="llevel">Native</p>
+        <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div>
+      </div>
+      <div class="lcard fi">
+        <p class="lname">English</p><p class="llevel">Full Professional</p>
+        <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div>
+      </div>
+      <div class="lcard fi">
+        <p class="lname">Japanese</p><p class="llevel">Professional &mdash; JLPT N1</p>
+        <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div>
+      </div>
+      <div class="lcard fi">
+        <p class="lname">French</p><p class="llevel">Professional</p>
+        <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div>
+      </div>
+      <div class="lcard fi">
+        <p class="lname">Chinese</p><p class="llevel">Basic &mdash; Learning</p>
+        <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<footer>
+  <div class="wrap">
+    <p>Built with love &middot; <a href="mailto:ka_hamdi@esi.dz">ka_hamdi@esi.dz</a> &middot; <a href="https://github.com/a-hamdi" target="_blank">github.com/a-hamdi</a></p>
+  </div>
+</footer>
+
+<script>
+const phrases = ["AI Engineer @ Nagoya University","2.1B LLM trained from scratch","CUDA kernel author 100 days","VLM researcher Sorbonne","JLPT N1 Japanese"];
+let pi = 0, ci = 0, del = false;
+const el = document.getElementById('typed');
+function type() {
+  const p = phrases[pi];
+  if (!del) {
+    el.textContent = p.slice(0, ci + 1);
+    ci++;
+    if (ci === p.length) { del = true; setTimeout(type, 2000); return; }
+  } else {
+    el.textContent = p.slice(0, ci - 1);
+    ci--;
+    if (ci === 0) { del = false; pi = (pi + 1) % phrases.length; }
+  }
+  setTimeout(type, del ? 40 : 80);
+}
+type();
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fi').forEach(function(el) { obs.observe(el); });
+</script>
+</body>
+</html>
